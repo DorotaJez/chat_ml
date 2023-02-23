@@ -1,0 +1,52 @@
+{% extends "chat/base.html" %}
+{% block content %}
+
+    <div class="content-div">
+        <h1>What chat room would you like to enter?</h1>
+        <h2>Lastly saved groups:</h2>
+    </div>
+    <div class="content-div" id="saved-groups">
+        {% for group in groups %}
+            <div id="group-name-list-item">{{ group.custom_group_name }}</div>
+        {% endfor %}
+    </div>
+    
+    <div class="content-div" id="enter-room-input-submit">
+        <input id="room-name-input" type="text" size="100"><br>
+        <input id="room-name-submit" type="button" value="Enter">
+    </div>
+
+    <div class="content-div" id="create-new-room">
+        <h3>Or create a new one:</h3>
+        <button onclick="showForm()" id="create-new-group" type="button" size="100">Create new group</button>
+        {% csrf_token %}
+        <form id="new-group-form" style="display: none" method="post">
+            <p>Fill in the following form:</p>
+            <p>The group's name should contain only alphanumeric characters.</p>
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form }}
+        <input id="new-group-submit" type="submit" size="100" value="Confirm">
+        </form>
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>        
+    <script>
+        document.querySelector('#room-name-input').focus();
+        document.querySelector('#room-name-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#room-name-submit').click();
+            }
+        };
+
+        document.querySelector('#room-name-submit').onclick = function(e) {
+            var roomName = document.querySelector('#room-name-input').value;
+            window.location.pathname = '/chat/' + roomName + '/';
+        };
+
+        function showForm() {
+        document.getElementById("new-group-form").style.display = "block";
+    };
+    </script>
+
+{% endblock %}

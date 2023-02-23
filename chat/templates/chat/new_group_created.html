@@ -1,0 +1,21 @@
+{% extends "chat/base.html" %}
+{% block content %}
+<h1>New group, {{ group_name }}, created successfully</h1>
+
+
+{{ group_name|json_script:"group-name" }}
+
+
+<h2>Click here to enter the new chatroom:</h2>
+<input id="room-enter" type="button" value="Enter">
+
+
+<script>
+    document.querySelector('#room-enter').onclick = function(e) {
+        var groupName = JSON.parse(document.getElementById('group-name').textContent);
+        window.location.pathname = '/chat/' + groupName + '/';
+    };
+
+</script>
+
+{% endblock %}

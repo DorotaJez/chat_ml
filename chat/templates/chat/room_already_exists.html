@@ -1,0 +1,15 @@
+{% extends "chat/base.html" %}
+{% block content %}
+<h2>A group with this name already exists. Please return and use another name.</h2>
+<h4>Click on the button below to return to the index page.</h4>
+
+<input id="return" type="button" value="Return">
+
+<script>
+
+    document.querySelector('#return').onclick = function(e) {
+        window.location.pathname = '/';
+    };
+
+</script>
+{% endblock %}

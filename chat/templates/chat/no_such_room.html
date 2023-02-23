@@ -1,0 +1,17 @@
+{% extends "chat/base.html" %}
+{% block content %}
+
+<h2>No such room in our database.</h2>
+<h4>Click on the button below to return to the index page and create a new room.</h4>
+
+<input id="return" type="button" value="Return">
+
+<script>
+
+    document.querySelector('#return').onclick = function(e) {
+        window.location.pathname = '/';
+    };
+
+</script>
+
+{% endblock %}
