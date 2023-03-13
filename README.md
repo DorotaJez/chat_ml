@@ -21,6 +21,7 @@ Another file worth mentioning is the "lookups.py" script located in the same fol
 ## Setup
 
 In order to run this project on your machine all you need to do after downloading the repository and insalling the required libraries is to generate a Django Secret Key and add it to the "config.py" file as the SECRET_KEY.
+Next, create a user account (preferably by python manage.py createsuperuser command) and log in. You will be able to create as many groups as you wish, containing other users as well.
 
 
 ## Further development
