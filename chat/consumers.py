@@ -26,7 +26,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         message = event['message']
         result = get_prediction(message)
         print(result)
-        if result[0][0] >0.8:
+        if result[0][0] >0.75:
             await self.send(text_data=json.dumps({'message':'This message cannot be sent because it was considered vulgar.'}))
         else:
             await self.send(text_data=json.dumps({'message': message}))
